@@ -39,6 +39,7 @@ ADDRESS=$(bashio::config "address")
 NETMASK=$(bashio::config "netmask")
 BROADCAST=$(bashio::config "broadcast")
 INTERFACE=$(bashio::config "interface")
+INTERNET_ACCESS_INTERFACE=$(bashio::config "internet_access_interface")
 HIDE_SSID=$(bashio::config.false "hide_ssid"; echo $?)
 DHCP=$(bashio::config.false "dhcp"; echo $?)
 DHCP_START_ADDR=$(bashio::config "dhcp_start_addr" )
@@ -53,7 +54,7 @@ CLIENT_DNS_OVERRIDE=$(bashio::config 'client_dns_override' )
 DNSMASQ_CONFIG_OVERRIDE=$(bashio::config 'dnsmasq_config_override' )
 
 # Get the Default Route interface
-DEFAULT_ROUTE_INTERFACE=$(ip route show default | awk '/^default/ { print $5 }')
+DEFAULT_ROUTE_INTERFACE=$INTERNET_ACCESS_INTERFACE
 
 echo "Starting Hass.io Access Point Addon"
 
